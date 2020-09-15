@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script>
+        function defineReactive(obj, key, val) {
+            Object.defineProperty(obj, key, {
+                get() {
+                    console.log(`get:${val}`)
+                    return val
+                },
+                set(newVal) {
+                    if (newVal !== val) {
+                        console.log(`set:${newVal}`)
+                        val = newVal
+                        // update()
+                    }
+                }
+            })
+        }
+        function observe(obj) {
+            if(typeof obj !== 'object' || obj == null) {
+                return
+            }
+            Object.keys(obj).forEach(key => {
+                defineReactive(obj, key, obj[key])
+            })
+        }
+        let obj = { a: 2, b: 3, c: { d: 4}}
+        obj.a
+        obj.a = 5
+        obj.c
+        obj.c.d = 9
+        // function update() {
+        //     app.innerText = obj.foo
+        // }
+        // defineReactive(obj, 'foo', '')
+        // obj.foo = new Date().toLocaleTimeString()
+        // setInterval(() => {
+        //     obj.foo = new Date().toLocaleTimeString()
+        // }, 1000)
+
+    </script>
+</body>
+
+</html>
