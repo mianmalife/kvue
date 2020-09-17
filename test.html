@@ -5,13 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<script src="./compile.js"></script>
 <script src="./kvue.js"></script>
 <body>
+  <div id="app">
+    <div>{{counter}}</div>
+    <div k-text="counter"></div>
+    <div k-html="ht"></div>
+    <div>{{counter}}</div>
+  </div>
     <script>
         const app = new KVue({
             el: '#app',
             data: {
-                counter: 1
+                counter: 1234,
+                ht: '<a style="color: red">test html</a>'
             }
         })
         setInterval(() => {
